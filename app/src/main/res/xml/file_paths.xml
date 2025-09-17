@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <paths xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- Expose app-specific external Documents directory -->
+    <!-- Allow sharing files from app's cache directory (used for QR image sharing) -->
+    <cache-path
+        name="cache"
+        path="." />
+
+    <!-- Expose app-specific external Documents directory (kept for any other usages) -->
     <external-files-path
         name="documents"
         path="Documents/" />

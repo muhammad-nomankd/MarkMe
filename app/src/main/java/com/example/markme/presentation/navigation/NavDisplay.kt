@@ -92,7 +92,8 @@ fun MarkMeNavigation(paddingValues: PaddingValues, startDestination: Screens) {
                         authViewModel.logout()
                         backStack.removeLastOrNull()
                         backStack.add(Screens.SignInScreen)
-                    }, paddingValues = paddingValues
+                    },
+                    paddingValues = paddingValues
                 )
             }
             entry(Screens.AnalyticsScreen) {

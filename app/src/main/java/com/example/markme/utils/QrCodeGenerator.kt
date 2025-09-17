@@ -7,13 +7,13 @@ import androidx.core.graphics.set
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.qrcode.QRCodeWriter
 
-fun generateQrCode(text: String): Bitmap? {
-    if (text.isBlank()) {
+fun generateQrCode(qrCode: String): Bitmap? {
+    if (qrCode.isBlank()) {
         return null
     }
     return try {
         val writer = QRCodeWriter()
-        val bitMatrix = writer.encode(text, BarcodeFormat.QR_CODE, 512, 512)
+        val bitMatrix = writer.encode(qrCode, BarcodeFormat.QR_CODE, 512, 512)
         val width = bitMatrix.width
         val height = bitMatrix.height
         val bitmap = createBitmap(width, height, Bitmap.Config.RGB_565)

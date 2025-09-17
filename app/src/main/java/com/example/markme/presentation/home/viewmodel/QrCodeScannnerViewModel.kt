@@ -18,7 +18,6 @@ class QrCodeScannerViewModel @Inject constructor(private val repository: Attenda
     val scanResult: StateFlow<ScanResult> = _scanResult.asStateFlow()
 
     fun processQrCode(qrCode: String){
-
         viewModelScope.launch(kotlinx.coroutines.Dispatchers.IO) {
             try {
                 val user = repository.getUserByQrCode(qrCode)

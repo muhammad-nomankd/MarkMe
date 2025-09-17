@@ -205,7 +205,7 @@ class UserDashboardViewModel @Inject constructor(
                         doShareQrImage(context, bitmap, user.fullName)
                     }
                 } catch (e: Exception) {
-                    // Handle sharing error
+                    Log.d("Qr code sharing","${e.message}")
                 }
             }
         }
@@ -213,20 +213,19 @@ class UserDashboardViewModel @Inject constructor(
 
     private fun doShareQrImage(context: Context, bitmap: Bitmap, userName: String) {
         try {
-            val file =
-                File(context.cacheDir, "qr_${'$'}userName_${'$'}{System.currentTimeMillis()}.png")
+            val file = File(context.cacheDir, "qr_${userName}_${System.currentTimeMillis()}.png")
             val outputStream = FileOutputStream(file)
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
             outputStream.close()
 
             val uri = FileProvider.getUriForFile(
-                context, "${'$'}{context.packageName}.fileprovider", file
+                context, "${context.packageName}.fileprovider", file
             )
 
             val shareIntent = Intent(Intent.ACTION_SEND).apply {
                 type = "image/png"
                 putExtra(Intent.EXTRA_STREAM, uri)
-                putExtra(Intent.EXTRA_SUBJECT, "QR Code for ${'$'}userName")
+                putExtra(Intent.EXTRA_SUBJECT, "QR Code for $userName")
                 addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
             }
 
